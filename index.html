@@ -188,6 +188,25 @@
       Your message has been sent!
     </div>
 
+    <!-- Newsletter Popup -->
+    <div class="newsletter-popup" id="newsletterPopup">
+      <div class="popup-content">
+        <button
+          class="close-popup"
+          id="closePopup"
+          title="Close newsletter popup"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+        <h3>Stay Updated!</h3>
+        <p>Subscribe to our newsletter for exclusive offers and coffee tips</p>
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" placeholder="Enter your email" required />
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
     <!-- Footer -->
     <footer>
       <div class="footer-content">
@@ -308,6 +327,37 @@
           nightModeToggle.innerHTML = "<i class='fas fa-moon'></i>";
           localStorage.setItem("theme", "light");
         }
+      });
+
+      // Newsletter Popup
+      const newsletterPopup = document.getElementById("newsletterPopup");
+      const closePopup = document.getElementById("closePopup");
+      const newsletterForm = document.getElementById("newsletterForm");
+
+      // Show popup after 5 seconds
+      setTimeout(() => {
+        newsletterPopup.classList.add("show");
+      }, 5000);
+
+      // Close popup when clicking the close button
+      closePopup.addEventListener("click", () => {
+        newsletterPopup.classList.remove("show");
+      });
+
+      // Handle form submission
+      newsletterForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const email = newsletterForm.querySelector('input[type="email"]').value;
+        // Here you would typically send this to your backend
+        console.log("Subscribed email:", email);
+        newsletterPopup.classList.remove("show");
+        // Show success notification
+        const notification = document.getElementById("notification");
+        notification.textContent = "Thank you for subscribing!";
+        notification.classList.add("show");
+        setTimeout(() => {
+          notification.classList.remove("show");
+        }, 3000);
       });
     </script>
   </body>
