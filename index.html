@@ -192,8 +192,12 @@
     <footer>
       <div class="footer-content">
         <div class="social-links">
-          <a href="https://www.facebook.com/p/Brew-Haven/"><i class="fab fa-facebook"></i></a>
-          <a href="https://www.instagram.com/drinkbrewhaven/"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.facebook.com/p/Brew-Haven/"
+            ><i class="fab fa-facebook"></i
+          ></a>
+          <a href="https://www.instagram.com/drinkbrewhaven/"
+            ><i class="fab fa-instagram"></i
+          ></a>
           <a href="https://x.com/BrewHaven/"><i class="fab fa-twitter"></i></a>
         </div>
         <p>&copy; 2024 Brew Haven. All rights reserved.</p>
@@ -220,34 +224,23 @@
       const prevBtn = document.getElementById("prevBtn");
       const nextBtn = document.getElementById("nextBtn");
       let isSecondSet = false;
-      const totalItems = menuGrid.children.length;
-      const itemsPerSet = 4;
 
       function updateButtons() {
-        if (isSecondSet) {
-          prevBtn.style.display = "flex";
-          nextBtn.style.display = "none";
-        } else {
-          prevBtn.style.display = "none";
-          nextBtn.style.display = "flex";
-        }
+        prevBtn.style.display = isSecondSet ? "flex" : "none";
+        nextBtn.style.display = isSecondSet ? "none" : "flex";
       }
 
       function slideMenu(direction) {
         const menuItems = menuGrid.querySelectorAll(".menu-item");
         const itemWidth = menuItems[0].offsetWidth;
-        const gap = 32; // 2rem gap
-        const slideAmount = (itemWidth + gap) * itemsPerSet;
+        const slideAmount = (itemWidth + 32) * 4;
 
-        if (direction === "next") {
-          // Move to second set
-          menuGrid.style.transform = `translateX(-${slideAmount}px)`;
-          isSecondSet = true;
-        } else {
-          // Move back to first set
-          menuGrid.style.transform = "translateX(0)";
-          isSecondSet = false;
-        }
+        menuGrid.style.transform =
+          direction === "next"
+            ? `translateX(-${slideAmount}px)`
+            : "translateX(0)";
+
+        isSecondSet = direction === "next";
         updateButtons();
       }
 
@@ -256,20 +249,6 @@
 
       // Initialize buttons
       updateButtons();
-
-      // Update on window resize
-      window.addEventListener("resize", () => {
-        const menuItems = menuGrid.querySelectorAll(".menu-item");
-        const itemWidth = menuItems[0].offsetWidth;
-        const gap = 32;
-        const slideAmount = (itemWidth + gap) * itemsPerSet;
-
-        if (isSecondSet) {
-          menuGrid.style.transform = `translateX(-${slideAmount}px)`;
-        } else {
-          menuGrid.style.transform = "translateX(0)";
-        }
-      });
 
       document
         .getElementById("contactForm")
