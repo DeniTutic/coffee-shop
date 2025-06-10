@@ -398,12 +398,26 @@ body {
   margin-bottom: 0.5rem;
 }
 
-.price {
-  display: block;
-  font-size: 1.2rem;
-  color: #8b5a2b;
-  margin-top: 1rem;
+.menu-item .price {
   font-weight: bold;
+  color: #8b5a2b;
+  margin: 0.5rem 0;
+  display: block;
+}
+
+.menu-item .stars {
+  color: #ffd700;
+  margin: 0.3rem 0;
+  font-size: 0.9rem;
+}
+
+.menu-item .stars i {
+  margin: 0 1px;
+  transition: transform 0.2s ease;
+}
+
+.menu-item .stars i:hover {
+  transform: scale(1.2);
 }
 
 .menu-img {
@@ -420,6 +434,14 @@ body {
 body.night-mode .menu-img {
   background: #242424;
   border: 3px solid #1a1a1a;
+}
+
+body.night-mode .menu-item .price {
+  color: #d4af37;
+}
+
+body.night-mode .menu-item .stars {
+  color: #ffd700;
 }
 
 /* Ingredients Section */
@@ -1073,4 +1095,23 @@ body.night-mode .contact-section h2 {
 /* Dark Mode Adjustments */
 body.night-mode .menu-item:hover {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.menu-item .stars {
+  color: #ffd700;
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+.menu-item .stars i {
+  margin: 0 1px;
+  transition: transform 0.2s ease;
+}
+
+.menu-item .stars i:hover {
+  transform: scale(1.2);
+}
+
+body.night-mode .menu-item .stars {
+  color: #ffd700;
 }
