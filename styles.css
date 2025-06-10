@@ -730,6 +730,7 @@ body.night-mode .newsletter-form input::placeholder {
   color: white;
   padding: 1rem 0;
   text-align: center;
+  margin-top: 80px;
 }
 
 .offer-content {
@@ -1010,4 +1011,12 @@ body.night-mode .review-text {
 
 body.night-mode .section-title::after {
   background-color: #e0e0e0;
+}
+
+/* Dark Mode Styles for Section Headings */
+body.night-mode .menu-section h2,
+body.night-mode .ingredients-section h2,
+body.night-mode .location-section h2,
+body.night-mode .contact-section h2 {
+  color: #e0e0e0;
 }
