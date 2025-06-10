@@ -23,6 +23,15 @@
       </ul>
     </nav>
 
+    <!-- Special Offers Banner -->
+    <div class="special-offers">
+      <div class="offer-content">
+        <i class="fas fa-gift"></i>
+        <p>Buy 5 coffees, get 1 free! Join our loyalty program today.</p>
+        <button class="offer-button">Learn More</button>
+      </div>
+    </div>
+
     <!-- Hero Section -->
     <section id="home" class="hero">
       <div class="hero-content">
@@ -103,6 +112,53 @@
       </div>
     </section>
 
+    <!-- Customer Reviews -->
+    <section class="reviews-section">
+      <h2 class="section-title">What Our Customers Say</h2>
+      <div class="reviews-container">
+        <div class="review-card">
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+
+            "The best coffee in town! Their cold brew is absolutely amazing."
+          </p>
+          <p class="reviewer">- Sarah M.</p>
+        </div>
+        <div class="review-card">
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="review-text">
+            "Cozy atmosphere and friendly staff. Their flat white is perfect!"
+          </p>
+          <p class="reviewer">- John D.</p>
+        </div>
+        <div class="review-card">
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+          <p class="review-text">
+            "Great place to work and enjoy quality coffee. The WiFi is fast
+            too!"
+          </p>
+          <p class="reviewer">- Emma R.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- Ingredients Section -->
     <section id="ingredients" class="ingredients-section">
       <h2>Our Coffee Story</h2>
@@ -121,6 +177,58 @@
           <i class="fas fa-clock"></i>
           <h3>Fresh Daily</h3>
           <p>We grind our beans fresh every morning</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Coffee Quiz -->
+    <section class="coffee-quiz-section">
+      <h2>Find Your Perfect Coffee</h2>
+      <div class="quiz-container">
+        <div id="quiz-start" class="quiz-screen active">
+          <p>Take our quick quiz to discover your ideal coffee match!</p>
+          <button id="start-quiz" class="quiz-button">Start Quiz</button>
+        </div>
+        <div id="quiz-questions" class="quiz-screen">
+          <div class="question">
+            <h3>How do you prefer your coffee?</h3>
+            <div class="options">
+              <button class="option">Strong and bold</button>
+              <button class="option">Smooth and creamy</button>
+              <button class="option">Light and fruity</button>
+            </div>
+          </div>
+        </div>
+        <div id="quiz-result" class="quiz-screen">
+          <h3>Your Perfect Match</h3>
+          <div id="result-content"></div>
+          <button id="retake-quiz" class="quiz-button">Take Quiz Again</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Coffee Brewing Timer -->
+    <section class="brewing-timer-section">
+      <h2>Perfect Brew Timer</h2>
+      <div class="timer-container">
+        <div class="timer-display">
+          <span id="minutes">04</span>:<span id="seconds">00</span>
+        </div>
+        <div class="timer-controls">
+          <button id="startTimer" class="timer-button">
+            <i class="fas fa-play"></i> Start
+          </button>
+          <button id="resetTimer" class="timer-button">
+            <i class="fas fa-redo"></i> Reset
+          </button>
+        </div>
+        <div class="brewing-tips">
+          <h3>Brewing Tips</h3>
+          <ul>
+            <li>Use 1:15 coffee to water ratio</li>
+            <li>Water temperature: 195-205°F</li>
+            <li>Grind size: Medium-coarse</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -184,6 +292,22 @@
       </div>
     </section>
 
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="social-links">
+          <a href="https://www.facebook.com/p/Brew-Haven/"
+            ><i class="fab fa-facebook"></i
+          ></a>
+          <a href="https://www.instagram.com/drinkbrewhaven/"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="https://x.com/BrewHaven/"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p>&copy; 2024 Brew Haven. All rights reserved.</p>
+      </div>
+    </footer>
+
     <!-- Notification -->
     <div class="notification" id="notification">
       Your message has been sent!
@@ -207,130 +331,6 @@
         </form>
       </div>
     </div>
-
-    <!-- Special Offers Banner -->
-    <div class="special-offers">
-      <div class="offer-content">
-        <i class="fas fa-gift"></i>
-        <p>Buy 5 coffees, get 1 free! Join our loyalty program today.</p>
-        <button class="offer-button">Learn More</button>
-      </div>
-    </div>
-
-    <!-- Coffee Brewing Timer -->
-    <section class="brewing-timer-section">
-      <h2>Perfect Brew Timer</h2>
-      <div class="timer-container">
-        <div class="timer-display">
-          <span id="minutes">04</span>:<span id="seconds">00</span>
-        </div>
-        <div class="timer-controls">
-          <button id="startTimer" class="timer-button">
-            <i class="fas fa-play"></i> Start
-          </button>
-          <button id="resetTimer" class="timer-button">
-            <i class="fas fa-redo"></i> Reset
-          </button>
-        </div>
-        <div class="brewing-tips">
-          <h3>Brewing Tips</h3>
-          <ul>
-            <li>Use 1:15 coffee to water ratio</li>
-            <li>Water temperature: 195-205°F</li>
-            <li>Grind size: Medium-coarse</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Customer Reviews -->
-    <section class="reviews-section">
-      <h2 class="section-title">What Our Customers Say</h2>
-      <div class="reviews-container">
-        <div class="review-card">
-          <div class="stars">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-          </div>
-
-            "The best coffee in town! Their cold brew is absolutely amazing."
-          </p>
-          <p class="reviewer">- Sarah M.</p>
-        </div>
-        <div class="review-card">
-          <div class="stars">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-          </div>
-          <p class="review-text">
-            "Cozy atmosphere and friendly staff. Their flat white is perfect!"
-          </p>
-          <p class="reviewer">- John D.</p>
-        </div>
-        <div class="review-card">
-          <div class="stars">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star-half-alt"></i>
-          </div>
-          <p class="review-text">
-            "Great place to work and enjoy quality coffee. The WiFi is fast
-            too!"
-          </p>
-          <p class="reviewer">- Emma R.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Coffee Quiz -->
-    <section class="coffee-quiz-section">
-      <h2>Find Your Perfect Coffee</h2>
-      <div class="quiz-container">
-        <div id="quiz-start" class="quiz-screen active">
-          <p>Take our quick quiz to discover your ideal coffee match!</p>
-          <button id="start-quiz" class="quiz-button">Start Quiz</button>
-        </div>
-        <div id="quiz-questions" class="quiz-screen">
-          <div class="question">
-            <h3>How do you prefer your coffee?</h3>
-            <div class="options">
-              <button class="option">Strong and bold</button>
-              <button class="option">Smooth and creamy</button>
-              <button class="option">Light and fruity</button>
-            </div>
-          </div>
-        </div>
-        <div id="quiz-result" class="quiz-screen">
-          <h3>Your Perfect Match</h3>
-          <div id="result-content"></div>
-          <button id="retake-quiz" class="quiz-button">Take Quiz Again</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-      <div class="footer-content">
-        <div class="social-links">
-          <a href="https://www.facebook.com/p/Brew-Haven/"
-            ><i class="fab fa-facebook"></i
-          ></a>
-          <a href="https://www.instagram.com/drinkbrewhaven/"
-            ><i class="fab fa-instagram"></i
-          ></a>
-          <a href="https://x.com/BrewHaven/"><i class="fab fa-twitter"></i></a>
-        </div>
-        <p>&copy; 2024 Brew Haven. All rights reserved.</p>
-      </div>
-    </footer>
 
     <!-- Scroll to Top Button -->
     <button class="scroll-top" id="scrollTop" title="Scroll to top">
