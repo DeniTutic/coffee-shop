@@ -347,6 +347,12 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .menu-nav {
@@ -877,6 +883,15 @@ body.night-mode .newsletter-form input::placeholder {
   margin-bottom: 1rem;
 }
 
+.stars i {
+  transition: transform 0.3s ease;
+}
+
+.stars i:hover {
+  transform: scale(1.2);
+  color: #ffd700;
+}
+
 .review-text {
   font-style: italic;
   margin-bottom: 1rem;
@@ -1031,4 +1046,31 @@ body.night-mode .ingredients-section h2,
 body.night-mode .location-section h2,
 body.night-mode .contact-section h2 {
   color: #e0e0e0;
+}
+
+/* Star Animation */
+.stars i {
+  transition: transform 0.3s ease;
+}
+
+.stars i:hover {
+  transform: scale(1.2);
+  color: #ffd700;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Dark Mode Adjustments */
+body.night-mode .menu-item:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
 }
