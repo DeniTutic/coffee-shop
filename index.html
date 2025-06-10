@@ -207,6 +207,114 @@
       </div>
     </div>
 
+    <!-- Special Offers Banner -->
+    <div class="special-offers">
+      <div class="offer-content">
+        <i class="fas fa-gift"></i>
+        <p>Buy 5 coffees, get 1 free! Join our loyalty program today.</p>
+        <button class="offer-button">Learn More</button>
+      </div>
+    </div>
+
+    <!-- Coffee Brewing Timer -->
+    <section class="brewing-timer-section">
+      <h2>Perfect Brew Timer</h2>
+      <div class="timer-container">
+        <div class="timer-display">
+          <span id="minutes">04</span>:<span id="seconds">00</span>
+        </div>
+        <div class="timer-controls">
+          <button id="startTimer" class="timer-button">
+            <i class="fas fa-play"></i> Start
+          </button>
+          <button id="resetTimer" class="timer-button">
+            <i class="fas fa-redo"></i> Reset
+          </button>
+        </div>
+        <div class="brewing-tips">
+          <h3>Brewing Tips</h3>
+          <ul>
+            <li>Use 1:15 coffee to water ratio</li>
+            <li>Water temperature: 195-205°F</li>
+            <li>Grind size: Medium-coarse</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Customer Reviews -->
+    <section class="reviews-section">
+      <h2>What Our Customers Say</h2>
+      <div class="reviews-container">
+        <div class="review-card">
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="review-text">
+            "The best coffee in town! Their cold brew is absolutely amazing."
+          </p>
+          <p class="reviewer">- Sarah M.</p>
+        </div>
+        <div class="review-card">
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="review-text">
+            "Cozy atmosphere and friendly staff. Their flat white is perfect!"
+          </p>
+          <p class="reviewer">- John D.</p>
+        </div>
+        <div class="review-card">
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+          <p class="review-text">
+            "Great place to work and enjoy quality coffee. The WiFi is fast
+            too!"
+          </p>
+          <p class="reviewer">- Emma R.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Coffee Quiz -->
+    <section class="coffee-quiz-section">
+      <h2>Find Your Perfect Coffee</h2>
+      <div class="quiz-container">
+        <div id="quiz-start" class="quiz-screen active">
+          <p>Take our quick quiz to discover your ideal coffee match!</p>
+          <button id="start-quiz" class="quiz-button">Start Quiz</button>
+        </div>
+        <div id="quiz-questions" class="quiz-screen">
+          <div class="question">
+            <h3>How do you prefer your coffee?</h3>
+            <div class="options">
+              <button class="option">Strong and bold</button>
+              <button class="option">Smooth and creamy</button>
+              <button class="option">Light and fruity</button>
+            </div>
+          </div>
+        </div>
+        <div id="quiz-result" class="quiz-screen">
+          <h3>Your Perfect Match</h3>
+          <div id="result-content"></div>
+          <button id="retake-quiz" class="quiz-button">Take Quiz Again</button>
+        </div>
+      </div>
+    </section>
+
     <!-- Footer -->
     <footer>
       <div class="footer-content">
@@ -354,6 +462,127 @@
         // Show success notification
         const notification = document.getElementById("notification");
         notification.textContent = "Thank you for subscribing!";
+        notification.classList.add("show");
+        setTimeout(() => {
+          notification.classList.remove("show");
+        }, 3000);
+      });
+
+      // Brewing Timer
+      const minutesDisplay = document.getElementById("minutes");
+      const secondsDisplay = document.getElementById("seconds");
+      const startTimerBtn = document.getElementById("startTimer");
+      const resetTimerBtn = document.getElementById("resetTimer");
+
+      let timeLeft = 240; // 4 min
+      let timerId = null;
+
+      function updateDisplay() {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        minutesDisplay.textContent = minutes.toString().padStart(2, "0");
+        secondsDisplay.textContent = seconds.toString().padStart(2, "0");
+      }
+
+      function startTimer() {
+        if (timerId === null) {
+          timerId = setInterval(() => {
+            timeLeft--;
+            updateDisplay();
+
+            if (timeLeft === 0) {
+              clearInterval(timerId);
+              timerId = null;
+              startTimerBtn.innerHTML = '<i class="fas fa-play"></i> Start';
+              // Play notification sound
+              const audio = new Audio(
+                "https://assets.mixkit.co/sfx/preview/mixkit-alarm-digital-clock-beep-989.mp3"
+              );
+              audio.play();
+            }
+          }, 1000);
+          startTimerBtn.innerHTML = '<i class="fas fa-pause"></i> Pause';
+        } else {
+          clearInterval(timerId);
+          timerId = null;
+          startTimerBtn.innerHTML = '<i class="fas fa-play"></i> Start';
+        }
+      }
+
+      function resetTimer() {
+        clearInterval(timerId);
+        timerId = null;
+        timeLeft = 240;
+        updateDisplay();
+        startTimerBtn.innerHTML = '<i class="fas fa-play"></i> Start';
+      }
+
+      startTimerBtn.addEventListener("click", startTimer);
+      resetTimerBtn.addEventListener("click", resetTimer);
+
+      // Coffee Quiz
+      const quizStart = document.getElementById("quiz-start");
+      const quizQuestions = document.getElementById("quiz-questions");
+      const quizResult = document.getElementById("quiz-result");
+      const startQuizBtn = document.getElementById("start-quiz");
+      const retakeQuizBtn = document.getElementById("retake-quiz");
+      const resultContent = document.getElementById("result-content");
+
+      const questions = [
+        {
+          question: "How do you prefer your coffee?",
+          options: ["Strong and bold", "Smooth and creamy", "Light and fruity"],
+          results: {
+            "Strong and bold":
+              "Espresso or Americano - Perfect for those who love a strong, intense coffee experience.",
+            "Smooth and creamy":
+              "Latte or Cappuccino - Ideal for those who enjoy a balanced, creamy coffee with milk.",
+            "Light and fruity":
+              "Pour Over or Cold Brew - Great choice for those who appreciate subtle, fruity notes in their coffee.",
+          },
+        },
+      ];
+
+      function showScreen(screen) {
+        [quizStart, quizQuestions, quizResult].forEach((s) =>
+          s.classList.remove("active")
+        );
+        screen.classList.add("active");
+      }
+
+      function handleOptionClick(option) {
+        const result = questions[0].results[option];
+        resultContent.innerHTML = `
+          <p>${result}</p>
+          <div class="recommended-drinks">
+            <h4>Recommended Drinks:</h4>
+            <ul>
+              ${
+                option === "Strong and bold"
+                  ? "<li>Espresso</li><li>Americano</li><li>Ristretto</li>"
+                  : option === "Smooth and creamy"
+                  ? "<li>Latte</li><li>Cappuccino</li><li>Flat White</li>"
+                  : "<li>Pour Over</li><li>Cold Brew</li><li>Chemex</li>"
+              }
+            </ul>
+          </div>
+        `;
+        showScreen(quizResult);
+      }
+
+      startQuizBtn.addEventListener("click", () => showScreen(quizQuestions));
+      retakeQuizBtn.addEventListener("click", () => showScreen(quizStart));
+
+      document.querySelectorAll(".option").forEach((option) => {
+        option.addEventListener("click", () =>
+          handleOptionClick(option.textContent)
+        );
+      });
+
+      // Special Offers Button
+      document.querySelector(".offer-button").addEventListener("click", () => {
+        const notification = document.getElementById("notification");
+        notification.textContent = "Join our loyalty program at the counter!";
         notification.classList.add("show");
         setTimeout(() => {
           notification.classList.remove("show");
