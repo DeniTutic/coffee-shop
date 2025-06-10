@@ -386,6 +386,9 @@
       </div>
     </div>
 
+    <!-- Balloons Container -->
+    <div class="balloons-container" id="balloonsContainer"></div>
+
     <!-- Scroll to Top Button -->
     <button class="scroll-top" id="scrollTop" title="Scroll to top">
       <i class="fas fa-arrow-up"></i>
@@ -511,13 +514,18 @@
       newsletterForm.addEventListener("submit", (e) => {
         e.preventDefault();
         const email = newsletterForm.querySelector('input[type="email"]').value;
-        // Here you would typically send this to your backend
+        //Send this to backend!
         console.log("Subscribed email:", email);
         newsletterPopup.classList.remove("show");
+
         // Show success notification
         const notification = document.getElementById("notification");
         notification.textContent = "Thank you for subscribing!";
         notification.classList.add("show");
+
+        // Show balloons
+        showBalloons();
+
         setTimeout(() => {
           notification.classList.remove("show");
         }, 3000);
@@ -645,6 +653,29 @@
           notification.classList.add("hide");
         }, 3000);
       });
+
+      function createBalloon() {
+        const balloon = document.createElement("div");
+        balloon.className = "balloon";
+        balloon.innerHTML = '<i class="fas fa-heart"></i>';
+        balloon.style.left = Math.random() * 100 + "vw";
+        balloon.style.animationDuration = Math.random() * 2 + 1.5 + "s";
+        return balloon;
+      }
+
+      function showBalloons() {
+        const container = document.getElementById("balloonsContainer");
+        container.innerHTML = "";
+
+        for (let i = 0; i < 5; i++) {
+          const balloon = createBalloon();
+          container.appendChild(balloon);
+        }
+
+        setTimeout(() => {
+          container.innerHTML = "";
+        }, 5000);
+      }
     </script>
   </body>
 </html>

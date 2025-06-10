@@ -1115,3 +1115,93 @@ body.night-mode .menu-item:hover {
 body.night-mode .menu-item .stars {
   color: #ffd700;
 }
+
+/* balloons animation */
+.balloons-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.balloon {
+  position: absolute;
+  bottom: -100px;
+  width: 60px;
+  height: 70px;
+  background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  animation: floatUp 3s linear forwards;
+  box-shadow: 0 0 15px rgba(255, 107, 107, 0.3);
+  transform-origin: center bottom;
+}
+
+.balloon::before {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.balloon:nth-child(2n) {
+  background: linear-gradient(45deg, #4ecdc4, #45b7af);
+  box-shadow: 0 0 15px rgba(78, 205, 196, 0.3);
+}
+
+.balloon:nth-child(3n) {
+  background: linear-gradient(45deg, #ffd93d, #ffc107);
+  box-shadow: 0 0 15px rgba(255, 217, 61, 0.3);
+}
+
+.balloon:nth-child(4n) {
+  background: linear-gradient(45deg, #95e1d3, #68c7b7);
+  box-shadow: 0 0 15px rgba(149, 225, 211, 0.3);
+}
+
+.balloon:nth-child(5n) {
+  background: linear-gradient(45deg, #f38181, #e74c3c);
+  box-shadow: 0 0 15px rgba(243, 129, 129, 0.3);
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) scale(1.2);
+    opacity: 0;
+  }
+}
+
+.balloon i {
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+body.night-mode .balloon {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
