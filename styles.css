@@ -989,3 +989,25 @@ body.night-mode .option:hover {
 body.night-mode .review-text {
   color: #e0e0e0;
 }
+
+.section-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: #8b5a2b;
+}
+
+body.night-mode .section-title::after {
+  background-color: #e0e0e0;
+}
