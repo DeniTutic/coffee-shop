@@ -584,9 +584,11 @@
       document.querySelector(".offer-button").addEventListener("click", () => {
         const notification = document.getElementById("notification");
         notification.textContent = "Join our loyalty program at the counter!";
+        notification.classList.remove("hide");
         notification.classList.add("show");
         setTimeout(() => {
           notification.classList.remove("show");
+          notification.classList.add("hide");
         }, 3000);
       });
     </script>

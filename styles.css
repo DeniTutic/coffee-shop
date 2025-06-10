@@ -11,12 +11,22 @@ html {
   padding: 15px 25px;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  transition: right 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .notification.show {
   right: 20px;
+  opacity: 1;
+  visibility: visible;
+}
+
+.notification.hide {
+  right: -300px;
+  opacity: 0;
+  visibility: hidden;
 }
 
 /* Scroll to Top Button */
@@ -104,6 +114,8 @@ body.night-mode .nav-links a:hover {
 body.night-mode .hero {
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80");
+  background-size: cover;
+  background-position: center;
 }
 
 body.night-mode .menu-section,
