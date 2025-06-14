@@ -264,3 +264,24 @@ function showBalloons() {
     container.innerHTML = "";
   }, 5000);
 }
+
+// Scroll Progress Bar
+window.addEventListener("scroll", () => {
+  const scrollProgress = document.querySelector(".scroll-progress");
+  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+  const scrolled = window.scrollY;
+  const progress = (scrolled / scrollable) * 100;
+  scrollProgress.style.width = progress + "%";
+});
+
+// Coffee of the Day Order Button
+document.querySelector(".order-now-btn").addEventListener("click", function () {
+  const notification = document.getElementById("notification");
+  notification.textContent = "Added to cart: Cold Brew Delight";
+  notification.classList.add("show");
+
+  setTimeout(() => {
+    notification.classList.remove("show");
+    notification.classList.add("hide");
+  }, 3000);
+});

@@ -11,6 +11,9 @@
     />
   </head>
   <body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress"></div>
+
     <!-- Navigation -->
     <nav class="navbar">
       <div class="logo">Brew Haven</div>
@@ -38,6 +41,29 @@
         <h1>Welcome to Brew Haven</h1>
         <p>Where every cup tells a story</p>
         <a href="#menu" class="cta-button">View Menu</a>
+      </div>
+    </section>
+
+    <!-- Coffee of the Day -->
+    <section class="coffee-of-day">
+      <div class="coffee-day-content">
+        <div class="coffee-day-image">
+          <img src="./pics/coldbrew2.webp" alt="Coffee of the Day" />
+          <div class="coffee-day-badge">Today's Special</div>
+        </div>
+        <div class="coffee-day-info">
+          <h2>Coffee of the Day</h2>
+          <h3>Cold Brew Delight</h3>
+          <p>
+            Our signature cold brew, steeped for 24 hours for maximum flavor
+            extraction. Smooth, rich, and refreshing.
+          </p>
+          <div class="coffee-day-price">
+            <span class="original-price">$5.00</span>
+            <span class="special-price">$3.99</span>
+          </div>
+          <button class="order-now-btn">Order Now</button>
+        </div>
       </div>
     </section>
 
@@ -397,7 +423,12 @@
     <div class="balloons-container" id="balloonsContainer"></div>
 
     <!-- Scroll to Top Button -->
-    <button class="scroll-top" id="scrollTop" title="Scroll to top">
+    <button
+      class="scroll-top"
+      id="scrollTop"
+      title="Scroll to top"
+      type="button"
+    >
       <i class="fas fa-arrow-up"></i>
     </button>
 
@@ -406,6 +437,7 @@
       class="night-mode-toggle"
       id="nightModeToggle"
       title="Toggle night mode"
+      type="button"
     >
       <i class="fas fa-moon"></i>
     </button>

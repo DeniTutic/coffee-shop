@@ -274,6 +274,7 @@ body {
 
 .hero-content {
   padding: 2rem;
+  animation: fadeInUp 1s ease-out;
 }
 
 .hero h1 {
@@ -351,8 +352,16 @@ body {
 }
 
 .menu-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.menu-item img {
+  transition: transform 0.5s ease;
+}
+
+.menu-item:hover img {
+  transform: scale(1.1);
 }
 
 .menu-nav {
@@ -1204,4 +1213,174 @@ body.night-mode .menu-item .stars {
 
 body.night-mode .balloon {
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(to right, #8b5a2b, #6d4420);
+  z-index: 1001;
+  transition: width 0.1s ease;
+}
+
+body.night-mode .scroll-progress {
+  background: linear-gradient(to right, #8b5a2b, #4a2c2a);
+}
+
+/* Coffee of the Day Section */
+.coffee-of-day {
+  padding: 4rem 5%;
+  background: linear-gradient(135deg, #f5f5f5 0%, #fff 100%);
+}
+
+.coffee-day-content {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.8s ease-out;
+}
+
+.coffee-day-image {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.coffee-day-image img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.coffee-day-image:hover img {
+  transform: scale(1.05);
+}
+
+.coffee-day-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #8b5a2b;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-weight: bold;
+  animation: pulse 2s infinite;
+}
+
+.coffee-day-info {
+  flex: 1;
+  padding: 1rem;
+}
+
+.coffee-day-info h2 {
+  color: #8b5a2b;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.coffee-day-info h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.coffee-day-price {
+  margin: 1.5rem 0;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: #999;
+  margin-right: 1rem;
+}
+
+.special-price {
+  font-size: 1.5rem;
+  color: #8b5a2b;
+  font-weight: bold;
+}
+
+.order-now-btn {
+  background: #8b5a2b;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.order-now-btn:hover {
+  background: #6d4420;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(139, 90, 43, 0.3);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Night Mode Styles for Coffee of the Day */
+body.night-mode .coffee-of-day {
+  background: linear-gradient(135deg, #1a1a1a 0%, #242424 100%);
+}
+
+body.night-mode .coffee-day-content {
+  background: #242424;
+}
+
+body.night-mode .coffee-day-info h3 {
+  color: #e0e0e0;
+}
+
+body.night-mode .coffee-day-info p {
+  color: #b0b0b0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .coffee-day-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .coffee-day-image img {
+    height: 300px;
+  }
+
+  .coffee-day-badge {
+    right: 50%;
+    transform: translateX(50%);
+  }
 }
