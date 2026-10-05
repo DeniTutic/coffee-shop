@@ -29,185 +29,6 @@ html {
   visibility: hidden;
 }
 
-/* Scroll to Top Button */
-.scroll-top {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 50px;
-  height: 50px;
-  background-color: #8b5a2b;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-  z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-.scroll-top.visible {
-  opacity: 1;
-  visibility: visible;
-}
-
-.scroll-top:hover {
-  background-color: #6d4420;
-  transform: translateY(-3px);
-}
-
-/* Night Mode Toggle */
-.night-mode-toggle {
-  position: fixed;
-  bottom: 30px;
-  right: 90px;
-  width: 50px;
-  height: 50px;
-  background-color: #8b5a2b;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-}
-
-.night-mode-toggle:hover {
-  background-color: #6d4420;
-  transform: translateY(-3px);
-}
-
-/* Night Mode Styles */
-body.night-mode {
-  background-color: #121212;
-  color: #e0e0e0;
-}
-
-body.night-mode .navbar {
-  background-color: rgba(18, 18, 18, 0.95);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-body.night-mode .logo {
-  color: #e0e0e0;
-}
-
-body.night-mode .nav-links a {
-  color: #e0e0e0;
-}
-
-body.night-mode .nav-links a:hover {
-  color: #8b5a2b;
-}
-
-body.night-mode .hero {
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80");
-  background-size: cover;
-  background-position: center;
-}
-
-body.night-mode .menu-section,
-body.night-mode .location-section {
-  background-color: #1a1a1a;
-}
-
-body.night-mode .menu-item,
-body.night-mode .hours {
-  background-color: #242424;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-}
-
-body.night-mode .menu-item h3,
-body.night-mode .hours h3,
-body.night-mode .address h3 {
-  color: #e0e0e0;
-}
-
-body.night-mode .price {
-  color: #8b5a2b;
-}
-
-body.night-mode .ingredients-section {
-  background-color: #1a1a1a;
-}
-
-body.night-mode .ingredient {
-  background-color: #242424;
-  border-radius: 10px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-}
-
-body.night-mode .ingredient i {
-  color: #8b5a2b;
-}
-
-body.night-mode .contact-section {
-  background-color: #1a1a1a;
-}
-
-body.night-mode .contact-form input,
-body.night-mode .contact-form textarea {
-  background-color: #242424;
-  color: #e0e0e0;
-  border: 1px solid #333;
-}
-
-body.night-mode .contact-form input::placeholder,
-body.night-mode .contact-form textarea::placeholder {
-  color: #888;
-}
-
-body.night-mode .info-item i {
-  color: #8b5a2b;
-}
-
-body.night-mode .info-item p {
-  color: #e0e0e0;
-}
-
-body.night-mode footer {
-  background-color: #121212;
-  border-top: 1px solid #333;
-}
-
-body.night-mode .social-links a {
-  color: #e0e0e0;
-}
-
-body.night-mode .social-links a:hover {
-  color: #8b5a2b;
-}
-
-body.night-mode .scroll-top,
-body.night-mode .night-mode-toggle {
-  background-color: #8b5a2b;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-}
-
-body.night-mode .scroll-top:hover,
-body.night-mode .night-mode-toggle:hover {
-  background-color: #6d4420;
-}
-
-body.night-mode .submit-button {
-  background-color: #8b5a2b;
-}
-
-body.night-mode .submit-button:hover {
-  background-color: #6d4420;
-}
 /* Reset and Base Styles */
 * {
   margin: 0;
@@ -438,19 +259,6 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
   background: #fff;
   border: 3px solid #f9f5f0;
-}
-
-body.night-mode .menu-img {
-  background: #242424;
-  border: 3px solid #1a1a1a;
-}
-
-body.night-mode .menu-item .price {
-  color: #d4af37;
-}
-
-body.night-mode .menu-item .stars {
-  color: #ffd700;
 }
 
 /* Ingredients Section */
@@ -749,30 +557,6 @@ footer {
   background-color: #6d4420;
 }
 
-/* Night Mode Styles for Newsletter */
-body.night-mode .newsletter-popup {
-  background-color: #242424;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-body.night-mode .newsletter-popup h3 {
-  color: #e0e0e0;
-}
-
-body.night-mode .newsletter-popup p {
-  color: #b0b0b0;
-}
-
-body.night-mode .newsletter-form input {
-  background-color: #333;
-  border-color: #444;
-  color: #e0e0e0;
-}
-
-body.night-mode .newsletter-form input::placeholder {
-  color: #888;
-}
-
 /* Special Offers Banner */
 .special-offers {
   background-color: #8b5a2b;
@@ -810,77 +594,6 @@ body.night-mode .newsletter-form input::placeholder {
 .offer-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-/* Brewing Timer Section */
-.brewing-timer-section {
-  padding: 4rem 2rem;
-  background-color: #f9f5f0;
-  text-align: center;
-}
-
-.timer-container {
-  max-width: 600px;
-  margin: 2rem auto;
-  background-color: white;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-}
-
-.timer-display {
-  font-size: 3rem;
-  font-weight: bold;
-  color: #8b5a2b;
-  margin-bottom: 1.5rem;
-}
-
-.timer-controls {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  margin-bottom: 2rem;
-}
-
-.timer-button {
-  background-color: #8b5a2b;
-  color: white;
-  border: none;
-  padding: 0.8rem 1.5rem;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.timer-button:hover {
-  background-color: #6d4420;
-  transform: translateY(-2px);
-}
-
-.brewing-tips {
-  text-align: left;
-  padding: 1rem;
-  background-color: #f9f5f0;
-  border-radius: 5px;
-}
-
-.brewing-tips ul {
-  list-style-type: none;
-  margin-top: 1rem;
-}
-
-.brewing-tips li {
-  margin-bottom: 0.5rem;
-  padding-left: 1.5rem;
-  position: relative;
-}
-
-.brewing-tips li:before {
-  content: "•";
-  color: #8b5a2b;
-  position: absolute;
-  left: 0;
 }
 
 /* Reviews Section */
@@ -934,97 +647,6 @@ body.night-mode .newsletter-form input::placeholder {
   color: #8b5a2b;
 }
 
-/* Coffee Quiz Section */
-.coffee-quiz-section {
-  padding: 4rem 2rem;
-  background-color: #f9f5f0;
-  text-align: center;
-}
-
-.quiz-container {
-  max-width: 600px;
-  margin: 2rem auto;
-  background-color: white;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-}
-
-.quiz-screen {
-  display: none;
-}
-
-.quiz-screen.active {
-  display: block;
-}
-
-.quiz-button {
-  background-color: #8b5a2b;
-  color: white;
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: 600;
-  margin-top: 1rem;
-  transition: all 0.3s ease;
-}
-
-.quiz-button:hover {
-  background-color: #6d4420;
-  transform: translateY(-2px);
-}
-
-.options {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-
-.option {
-  background-color: #f9f5f0;
-  border: 2px solid #8b5a2b;
-  padding: 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.option:hover {
-  background-color: #8b5a2b;
-  color: white;
-}
-
-/* Night Mode Styles for New Sections */
-body.night-mode .brewing-timer-section,
-body.night-mode .reviews-section,
-body.night-mode .coffee-quiz-section {
-  background-color: #1a1a1a;
-}
-
-body.night-mode .timer-container,
-body.night-mode .review-card,
-body.night-mode .quiz-container {
-  background-color: #242424;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-}
-
-body.night-mode .brewing-tips {
-  background-color: #1a1a1a;
-}
-
-body.night-mode .option {
-  background-color: #1a1a1a;
-  border-color: #8b5a2b;
-  color: #e0e0e0;
-}
-
-body.night-mode .option:hover {
-  background-color: #8b5a2b;
-  color: white;
-}
-
 /* Responsive Styles */
 @media (max-width: 768px) {
   .offer-content {
@@ -1036,17 +658,9 @@ body.night-mode .option:hover {
     grid-template-columns: 1fr;
   }
 
-  .timer-display {
-    font-size: 2.5rem;
-  }
+  
 
-  .timer-controls {
-    flex-direction: column;
-  }
-}
-
-body.night-mode .review-text {
-  color: #e0e0e0;
+  
 }
 
 .section-title {
@@ -1065,18 +679,6 @@ body.night-mode .review-text {
   width: 60px;
   height: 3px;
   background-color: #8b5a2b;
-}
-
-body.night-mode .section-title::after {
-  background-color: #e0e0e0;
-}
-
-/* Dark Mode Styles for Section Headings */
-body.night-mode .menu-section h2,
-body.night-mode .ingredients-section h2,
-body.night-mode .location-section h2,
-body.night-mode .contact-section h2 {
-  color: #e0e0e0;
 }
 
 /* Star Animation */
@@ -1101,11 +703,6 @@ body.night-mode .contact-section h2 {
   }
 }
 
-/* Dark Mode Adjustments */
-body.night-mode .menu-item:hover {
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-}
-
 .menu-item .stars {
   color: #ffd700;
   margin: 0.5rem 0;
@@ -1119,10 +716,6 @@ body.night-mode .menu-item:hover {
 
 .menu-item .stars i:hover {
   transform: scale(1.2);
-}
-
-body.night-mode .menu-item .stars {
-  color: #ffd700;
 }
 
 /* balloons animation */
@@ -1211,10 +804,6 @@ body.night-mode .menu-item .stars {
   }
 }
 
-body.night-mode .balloon {
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-}
-
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -1235,10 +824,6 @@ body.night-mode .balloon {
   background: linear-gradient(to right, #8b5a2b, #6d4420);
   z-index: 1001;
   transition: width 0.1s ease;
-}
-
-body.night-mode .scroll-progress {
-  background: linear-gradient(to right, #8b5a2b, #4a2c2a);
 }
 
 /* Coffee of the Day Section */
@@ -1349,23 +934,6 @@ body.night-mode .scroll-progress {
     opacity: 1;
     transform: translateX(0);
   }
-}
-
-/* Night Mode Styles for Coffee of the Day */
-body.night-mode .coffee-of-day {
-  background: linear-gradient(135deg, #1a1a1a 0%, #242424 100%);
-}
-
-body.night-mode .coffee-day-content {
-  background: #242424;
-}
-
-body.night-mode .coffee-day-info h3 {
-  color: #e0e0e0;
-}
-
-body.night-mode .coffee-day-info p {
-  color: #b0b0b0;
 }
 
 /* Responsive Design */
