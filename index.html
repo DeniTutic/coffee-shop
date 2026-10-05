@@ -3,373 +3,634 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Brew Haven - Coffee Shop</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>Brew Haven — Specialty Coffee in Ontario, CA</title>
+    <meta
+      name="description"
+      content="Brew Haven is a neighbourhood coffee shop in Ontario, CA. Ethically sourced beans, roasted with care and ground fresh every morning."
+    />
+    <meta name="theme-color" content="#F5EDE3" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg transform='rotate(35 16 16)'%3E%3Cellipse cx='16' cy='16' rx='9' ry='13' fill='%234A2E1F'/%3E%3Cpath d='M16 4c-4 5 4 10 0 24' fill='none' stroke='%23F5EDE3' stroke-width='2.2' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Inter:wght@400;500;600&display=swap"
     />
+    <link rel="stylesheet" href="styles.css" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/"
+        }
+      }
+    </script>
+    <script type="module" src="index.js"></script>
+    <script type="module" src="scene.js"></script>
   </head>
   <body>
-    <!-- Scroll Progress Bar -->
-    <div class="scroll-progress"></div>
+    <!-- Icon sprite -->
+    <svg width="0" height="0" class="sprite" aria-hidden="true">
+      <symbol id="i-bean" viewBox="0 0 24 24">
+        <g transform="rotate(35 12 12)">
+          <ellipse cx="12" cy="12" rx="6.6" ry="9.6" fill="currentColor" />
+          <path
+            d="M12 3c-3 4 3 7.5 0 18"
+            fill="none"
+            style="stroke: var(--crease, #f5ede3)"
+            stroke-width="1.6"
+            stroke-linecap="round"
+          />
+        </g>
+      </symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+        <circle cx="12" cy="10" r="3" />
+      </symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 6v6l4 2" />
+      </symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" />
+      </symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="4" width="20" height="16" rx="2" />
+        <path d="m22 7-10 6L2 7" />
+      </symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14M13 5l7 7-7 7" />
+      </symbol>
+      <symbol id="i-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+        <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
+      </symbol>
+      <symbol id="i-flame" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5Z" />
+      </symbol>
+      <symbol id="i-cup" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 8h1a4 4 0 1 1 0 8h-1" />
+        <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z" />
+        <path d="M6 2v2M10 2v2M14 2v2" />
+      </symbol>
+      <symbol id="i-star" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M12 2.5l2.94 5.96 6.56.95-4.75 4.63 1.12 6.54L12 17.5l-5.87 3.08 1.12-6.54L2.5 9.41l6.56-.95L12 2.5Z" />
+      </symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M4 8h16M4 16h16" />
+      </symbol>
+      <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M18 6 6 18M6 6l12 12" />
+      </symbol>
+      <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 6 9 17l-5-5" />
+      </symbol>
+      <symbol id="i-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2.5" y="2.5" width="19" height="19" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <path d="M17.5 6.5h.01" />
+      </symbol>
+      <symbol id="i-facebook" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3Z" />
+      </symbol>
+      <symbol id="i-x" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M17.75 3h3.07l-6.71 7.67L22 21h-6.18l-4.84-6.33L5.44 21H2.37l7.18-8.2L2 3h6.34l4.37 5.78L17.75 3Zm-1.08 16.2h1.7L7.4 4.73H5.58L16.67 19.2Z" />
+      </symbol>
+    </svg>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-      <div class="logo">Brew Haven</div>
-      <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#menu">Menu</a></li>
-        <li><a href="#ingredients">Our Coffee</a></li>
-        <li><a href="#location">Location</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- Special Offers Banner -->
-    <div class="special-offers">
-      <div class="offer-content">
-        <i class="fas fa-gift"></i>
-        <p>Buy 5 coffees, get 1 free! Join our loyalty program today.</p>
-        <button class="offer-button">Learn More</button>
-      </div>
-    </div>
+    <!-- Header -->
+    <header class="site-header" id="siteHeader">
+      <div class="container header-inner">
+        <a href="#home" class="brand" aria-label="Brew Haven — home">
+          <svg class="brand-mark" aria-hidden="true"><use href="#i-bean" /></svg>
+          <span>Brew Haven</span>
+        </a>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-      <div class="hero-content">
-        <h1>Welcome to Brew Haven</h1>
-        <p>Where every cup tells a story</p>
-        <a href="#menu" class="cta-button">View Menu</a>
-      </div>
-    </section>
+        <nav class="primary-nav" aria-label="Primary">
+          <ul>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#story">Our Coffee</a></li>
+            <li><a href="#visit">Visit</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
 
-    <!-- Coffee of the Day -->
-    <section class="coffee-of-day">
-      <div class="coffee-day-content">
-        <div class="coffee-day-image">
-          <img src="./pics/coldbrew2.webp" alt="Coffee of the Day" />
-          <div class="coffee-day-badge">Today's Special</div>
-        </div>
-        <div class="coffee-day-info">
-          <h2>Coffee of the Day</h2>
-          <h3>Cold Brew Delight</h3>
-          <p>
-            Our signature cold brew, steeped for 24 hours for maximum flavor
-            extraction. Smooth, rich, and refreshing.
-          </p>
-          <div class="coffee-day-price">
-            <span class="original-price">$5.00</span>
-            <span class="special-price">$3.99</span>
-          </div>
-          <button class="order-now-btn">Order Now</button>
-        </div>
-      </div>
-    </section>
+        <a href="#visit" class="btn btn-primary btn-sm header-cta">
+          <svg class="icon" aria-hidden="true"><use href="#i-pin" /></svg>
+          Find us
+        </a>
 
-    <!-- Menu Section -->
-    <section id="menu" class="menu-section">
-      <h2>Our Menu</h2>
-      <div class="menu-container">
-        <button class="menu-nav prev-btn" id="prevBtn" title="Previous items">
-          <i class="fas fa-chevron-left"></i>
-        </button>
-        <div class="menu-grid" id="menuGrid">
-          <div class="menu-item">
-            <img src="./pics/espresso.jpg" alt="Espresso" class="menu-img" />
-            <h3>Espresso</h3>
-            <p>Rich and bold</p>
-            <span class="price">$3.50</span>
-            <div class="stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-          </div>
-          <div class="menu-item">
-            <img
-              src="./pics/cappuccino.jpg"
-              alt="Cappuccino"
-              class="menu-img"
-            />
-            <h3>Cappuccino</h3>
-            <p>Espresso with steamed milk</p>
-            <span class="price">$4.50</span>
-            <div class="stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
-            </div>
-          </div>
-          <div class="menu-item">
-            <img src="./pics/latte.jpg" alt="Latte" class="menu-img" />
-            <h3>Latte</h3>
-            <p>Creamy and smooth</p>
-            <span class="price">$4.75</span>
-            <div class="stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-          </div>
-          <div class="menu-item">
-            <img src="./pics/cold-brew.jpg" alt="Cold Brew" class="menu-img" />
-            <h3>Cold Brew</h3>
-            <p>Slow-steeped for 24 hours</p>
-            <span class="price">$5.00</span>
-            <div class="stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-          </div>
-          <div class="menu-item">
-            <img src="./pics/mocha.jpg" alt="Mocha" class="menu-img" />
-            <h3>Mocha</h3>
-            <p>Espresso with chocolate</p>
-            <span class="price">$4.75</span>
-            <div class="stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
-            </div>
-          </div>
-          <div class="menu-item">
-            <img src="./pics/americano.jpg" alt="Americano" class="menu-img" />
-            <h3>Americano</h3>
-            <p>Espresso with hot water</p>
-            <span class="price">$3.75</span>
-            <div class="stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-          </div>
-          <div class="menu-item">
-            <img src="./pics/macchiato.jpg" alt="Macchiato" class="menu-img" />
-            <h3>Macchiato</h3>
-            <p>Espresso with milk foam</p>
-            <span class="price">$4.00</span>
-            <div class="stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-          </div>
-          <div class="menu-item">
-            <img
-              src="./pics/flat-white.jpg"
-              alt="Flat White"
-              class="menu-img"
-            />
-            <h3>Flat White</h3>
-            <p>Double espresso with microfoam</p>
-            <span class="price">$4.50</span>
-            <div class="stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-          </div>
-        </div>
-        <button class="menu-nav next-btn" id="nextBtn" title="Next items">
-          <i class="fas fa-chevron-right"></i>
+        <button
+          class="nav-toggle"
+          type="button"
+          commandfor="mobileNav"
+          command="show-modal"
+          aria-controls="mobileNav"
+          aria-expanded="false"
+        >
+          <svg class="icon" aria-hidden="true"><use href="#i-menu" /></svg>
+          <span class="visually-hidden">Open menu</span>
         </button>
       </div>
-    </section>
+    </header>
 
-    <!-- Customer Reviews -->
-    <section class="reviews-section">
-      <h2 class="section-title">What Our Customers Say</h2>
-      <div class="reviews-container">
-        <div class="review-card">
-          <div class="stars">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-          </div>
-          <p>
-            "The best coffee in town! Their cold brew is absolutely amazing."
-          </p>
-          <p class="reviewer">- Sarah M.</p>
-        </div>
-        <div class="review-card">
-          <div class="stars">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-          </div>
-          <p class="review-text">
-            "Cozy atmosphere and friendly staff. Their flat white is perfect!"
-          </p>
-          <p class="reviewer">- John D.</p>
-        </div>
-        <div class="review-card">
-          <div class="stars">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star-half-alt"></i>
-          </div>
-          <p class="review-text">
-            "Great place to work and enjoy quality coffee. The WiFi is fast
-            too!"
-          </p>
-          <p class="reviewer">- Emma R.</p>
-        </div>
+    <!-- Mobile navigation -->
+    <dialog class="mobile-nav" id="mobileNav" aria-label="Site menu">
+      <div class="mobile-nav-head">
+        <span class="brand">
+          <svg class="brand-mark" aria-hidden="true"><use href="#i-bean" /></svg>
+          <span>Brew Haven</span>
+        </span>
+        <button class="icon-btn" type="button" commandfor="mobileNav" command="close">
+          <svg class="icon" aria-hidden="true"><use href="#i-close" /></svg>
+          <span class="visually-hidden">Close menu</span>
+        </button>
       </div>
-    </section>
-
-    <!-- Ingredients Section -->
-    <section id="ingredients" class="ingredients-section">
-      <h2>Our Coffee Story</h2>
-      <div class="ingredients-content">
-        <div class="ingredient">
-          <i class="fas fa-seedling"></i>
-          <h3>Ethically Sourced Beans</h3>
-          <p>We source our beans from sustainable farms worldwide</p>
-        </div>
-        <div class="ingredient">
-          <i class="fas fa-fire"></i>
-          <h3>Perfect Roast</h3>
-          <p>Each batch is carefully roasted to perfection</p>
-        </div>
-        <div class="ingredient">
-          <i class="fas fa-clock"></i>
-          <h3>Fresh Daily</h3>
-          <p>We grind our beans fresh every morning</p>
-        </div>
+      <nav aria-label="Mobile">
+        <ul>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#story">Our Coffee</a></li>
+          <li><a href="#visit">Visit</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="mobile-nav-foot">
+        <p class="open-status" data-open-status>Checking opening hours…</p>
+        <a href="#visit" class="btn btn-primary btn-block">
+          <svg class="icon" aria-hidden="true"><use href="#i-pin" /></svg>
+          Find us
+        </a>
       </div>
-    </section>
+    </dialog>
 
-    <!-- Location Section -->
-    <section id="location" class="location-section">
-      <h2>Find Us</h2>
-      <div class="location-content">
-        <div class="map">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.1234567890123!2d-117.61345678901234!3d34.05645678901234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c3357c2f6345a5%3A0x1234567890123456!2s3430%20E%20Ontario%20Ranch%20Rd%20%235%2C%20Ontario%2C%20CA%2091761!5e0!3m2!1sen!2sus!4v1709912345678!5m2!1sen!2sus"
-            width="100%"
-            height="450"
-            style="border: 0; border-radius: 10px"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title="Brew Haven location map"
-          >
-          </iframe>
-        </div>
-        <div class="hours">
-          <h3>Opening Hours</h3>
-          <p>Monday - Friday: 7am - 8pm</p>
-          <p>Saturday - Sunday: 8am - 6pm</p>
-          <div class="address">
-            <h3>Our Location</h3>
-            <p>
-              <i class="fas fa-map-marker-alt"></i> 3430 East Ontario Ranch Rd
-              #5, Ontario, CA 91761
+    <main id="main">
+      <!-- Hero -->
+      <section id="home" class="hero">
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <p class="eyebrow">Specialty coffee · Ontario, CA</p>
+            <h1 class="hero-title">
+              Every cup <br />
+              tells a <em>story.</em>
+            </h1>
+            <p class="hero-lede">
+              Ethically sourced beans, roasted with care and ground fresh every
+              morning. Pull up a chair — your cup is waiting.
             </p>
+            <div class="hero-actions">
+              <a href="#menu" class="btn btn-primary btn-lg">
+                See the menu
+                <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg>
+              </a>
+              <a
+                href="https://www.google.com/maps/dir/?api=1&destination=3430+East+Ontario+Ranch+Rd+%235,+Ontario,+CA+91761"
+                class="btn btn-ghost btn-lg"
+                target="_blank"
+                rel="noopener"
+              >
+                Get directions
+              </a>
+            </div>
+            <p class="status-chip" data-open-status>Checking opening hours…</p>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-      <h2>Contact Us</h2>
-      <div class="contact-content">
-        <form class="contact-form" id="contactForm">
-          <input type="text" placeholder="Name" required />
-          <input type="email" placeholder="Email" required />
-          <textarea placeholder="Message" required></textarea>
-          <button type="submit" class="submit-button">Send Message</button>
-        </form>
-        <div class="contact-info">
-          <div class="info-item">
-            <i class="fas fa-phone"></i>
-            <p>+387 33 123 456</p>
-          </div>
-          <div class="info-item">
-            <i class="fas fa-envelope"></i>
-            <p>hello@brewhaven.com</p>
-          </div>
-          <div class="info-item">
-            <i class="fas fa-map-marker-alt"></i>
-            <p>3430 East Ontario Ranch Rd #5, Ontario, CA 91761</p>
+          <div class="hero-visual" id="heroVisual" data-scene="loading">
+            <div class="hero-halo" aria-hidden="true"></div>
+            <canvas id="coffeeScene" aria-hidden="true"></canvas>
+
+            <!-- Shown if WebGL is unavailable -->
+            <svg class="hero-fallback" viewBox="0 0 400 400" aria-hidden="true">
+              <ellipse cx="200" cy="300" rx="150" ry="34" fill="#E6D6C3" />
+              <ellipse cx="200" cy="292" rx="122" ry="24" fill="#F7EFE6" />
+              <path d="M300 168c46 0 50 70 0 72" fill="none" stroke="#F3E9DD" stroke-width="18" stroke-linecap="round" />
+              <path d="M106 150h188c0 92-24 142-94 142s-94-50-94-142Z" fill="#FBF6EF" />
+              <ellipse cx="200" cy="150" rx="94" ry="22" fill="#EADBC9" />
+              <ellipse cx="200" cy="152" rx="84" ry="17" fill="#8A5530" />
+              <path d="M200 166c-16-10-28-6-28 2s16 10 28 0c12 10 28 6 28 0s-12-12-28-2Z" fill="#F3E2CB" />
+              <path class="steam" d="M180 120c-12-18 12-26 0-46" />
+              <path class="steam" d="M204 112c-12-18 12-26 0-46" />
+              <path class="steam" d="M228 120c-12-18 12-26 0-46" />
+            </svg>
+
+            <a href="#special" class="float-card float-card--special">
+              <span class="float-card-label">Today’s special</span>
+              <span class="float-card-value">Cold Brew · $3.99</span>
+            </a>
+            <div class="float-card float-card--fresh" aria-hidden="true">
+              <svg class="icon" aria-hidden="true"><use href="#i-bean" /></svg>
+              Ground fresh every morning
+            </div>
           </div>
         </div>
+      </section>
+
+      <!-- Ticker -->
+      <div class="ticker" aria-label="What we stand for">
+        <div class="ticker-track">
+          <ul>
+            <li>Ethically sourced</li>
+            <li>Roasted in small batches</li>
+            <li>Ground fresh daily</li>
+            <li>24-hour cold brew</li>
+            <li>Friendly faces</li>
+            <li>Fast Wi-Fi</li>
+          </ul>
+          <ul aria-hidden="true">
+            <li>Ethically sourced</li>
+            <li>Roasted in small batches</li>
+            <li>Ground fresh daily</li>
+            <li>24-hour cold brew</li>
+            <li>Friendly faces</li>
+            <li>Fast Wi-Fi</li>
+          </ul>
+        </div>
       </div>
-    </section>
+
+      <!-- Today's special -->
+      <section id="special" class="section special" aria-labelledby="special-title">
+        <div class="container">
+          <article class="special-card reveal">
+            <div class="special-media">
+              <img
+                src="./pics/coldbrew2.webp"
+                alt="A glass of cold brew coffee over ice"
+                width="1200"
+                height="686"
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="badge">Today’s special</span>
+            </div>
+            <div class="special-body">
+              <p class="eyebrow">Coffee of the day</p>
+              <h2 id="special-title" class="section-title">Cold Brew Delight</h2>
+              <p>
+                Our signature cold brew, steeped for 24 hours for maximum flavour.
+                Smooth, rich and refreshing — with none of the bitterness.
+              </p>
+              <p class="price-row">
+                <span class="price-now">$3.99</span>
+                <s class="price-was"><span class="visually-hidden">Regular price </span>$5.00</s>
+                <span class="save-pill">Save 20%</span>
+              </p>
+              <a href="#visit" class="btn btn-primary">
+                Come grab one
+                <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Menu -->
+      <section id="menu" class="section menu" aria-labelledby="menu-title">
+        <div class="container">
+          <header class="section-head reveal">
+            <p class="eyebrow">The menu</p>
+            <h2 id="menu-title" class="section-title">Brewed to order</h2>
+            <p class="section-lede">
+              Every drink starts with a freshly pulled shot of our house espresso.
+            </p>
+          </header>
+
+          <div class="menu-tabs" role="tablist" aria-label="Filter the menu">
+            <button role="tab" aria-selected="true" aria-controls="menuList" data-filter="all" type="button">All</button>
+            <button role="tab" aria-selected="false" aria-controls="menuList" data-filter="espresso" type="button" tabindex="-1">Espresso</button>
+            <button role="tab" aria-selected="false" aria-controls="menuList" data-filter="milk" type="button" tabindex="-1">With milk</button>
+            <button role="tab" aria-selected="false" aria-controls="menuList" data-filter="signature" type="button" tabindex="-1">Signature</button>
+          </div>
+
+          <ul class="menu-list" id="menuList" role="tabpanel" aria-live="polite">
+            <li class="menu-item" data-category="espresso">
+              <img src="./pics/espresso.jpg" alt="" width="96" height="96" loading="lazy" decoding="async" />
+              <div class="menu-item-body">
+                <h3><span>Espresso</span><span class="dots" aria-hidden="true"></span><span class="price">$3.50</span></h3>
+                <p>Rich and bold — a single, syrupy shot.</p>
+              </div>
+            </li>
+            <li class="menu-item" data-category="espresso">
+              <img src="./pics/americano.jpg" alt="" width="96" height="96" loading="lazy" decoding="async" />
+              <div class="menu-item-body">
+                <h3><span>Americano</span><span class="dots" aria-hidden="true"></span><span class="price">$3.75</span></h3>
+                <p>Espresso lengthened with hot water.</p>
+              </div>
+            </li>
+            <li class="menu-item" data-category="espresso">
+              <img src="./pics/macchiato.jpg" alt="" width="96" height="96" loading="lazy" decoding="async" />
+              <div class="menu-item-body">
+                <h3><span>Macchiato</span><span class="dots" aria-hidden="true"></span><span class="price">$4.00</span></h3>
+                <p>Espresso marked with a spoon of milk foam.</p>
+              </div>
+            </li>
+            <li class="menu-item" data-category="milk">
+              <img src="./pics/cappuccino.jpg" alt="" width="96" height="96" loading="lazy" decoding="async" />
+              <div class="menu-item-body">
+                <h3><span>Cappuccino</span><span class="dots" aria-hidden="true"></span><span class="price">$4.50</span></h3>
+                <p>Espresso with steamed milk and a deep foam cap.</p>
+              </div>
+            </li>
+            <li class="menu-item" data-category="milk">
+              <img src="./pics/latte.jpg" alt="" width="96" height="96" loading="lazy" decoding="async" />
+              <div class="menu-item-body">
+                <h3><span>Latte</span><span class="dots" aria-hidden="true"></span><span class="price">$4.75</span></h3>
+                <p>Creamy and smooth, finished with latte art.</p>
+              </div>
+            </li>
+            <li class="menu-item" data-category="milk">
+              <img src="./pics/flat-white.jpg" alt="" width="96" height="96" loading="lazy" decoding="async" />
+              <div class="menu-item-body">
+                <h3><span>Flat White</span><span class="dots" aria-hidden="true"></span><span class="price">$4.50</span></h3>
+                <p>Double espresso with silky microfoam.</p>
+              </div>
+            </li>
+            <li class="menu-item" data-category="signature">
+              <img src="./pics/mocha.jpg" alt="" width="96" height="96" loading="lazy" decoding="async" />
+              <div class="menu-item-body">
+                <h3><span>Mocha</span><span class="dots" aria-hidden="true"></span><span class="price">$4.75</span></h3>
+                <p>Espresso, dark chocolate and steamed milk.</p>
+              </div>
+            </li>
+            <li class="menu-item" data-category="signature">
+              <img src="./pics/cold-brew.jpg" alt="" width="96" height="96" loading="lazy" decoding="async" />
+              <div class="menu-item-body">
+                <h3><span>Cold Brew</span><span class="dots" aria-hidden="true"></span><span class="price">$5.00</span></h3>
+                <p>Slow-steeped for 24 hours, served over ice.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Story -->
+      <section id="story" class="section story" aria-labelledby="story-title">
+        <div class="container">
+          <header class="section-head reveal">
+            <p class="eyebrow">Our coffee</p>
+            <h2 id="story-title" class="section-title">From farm to your cup</h2>
+            <p class="section-lede">Three steps, no shortcuts.</p>
+          </header>
+
+          <ol class="steps">
+            <li class="step reveal">
+              <span class="step-icon"><svg class="icon" aria-hidden="true"><use href="#i-leaf" /></svg></span>
+              <span class="step-num">01</span>
+              <h3>Ethically sourced</h3>
+              <p>We buy our beans from sustainable farms around the world and pay fairly for them.</p>
+            </li>
+            <li class="step reveal">
+              <span class="step-icon"><svg class="icon" aria-hidden="true"><use href="#i-flame" /></svg></span>
+              <span class="step-num">02</span>
+              <h3>Perfectly roasted</h3>
+              <p>Each small batch is roasted carefully to bring out its own character.</p>
+            </li>
+            <li class="step reveal">
+              <span class="step-icon"><svg class="icon" aria-hidden="true"><use href="#i-cup" /></svg></span>
+              <span class="step-num">03</span>
+              <h3>Fresh every day</h3>
+              <p>We grind our beans fresh every morning, so every cup tastes the way it should.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Loyalty -->
+      <section class="section loyalty" aria-labelledby="loyalty-title">
+        <div class="container">
+          <div class="loyalty-card reveal">
+            <div class="loyalty-copy">
+              <p class="eyebrow">Loyalty card</p>
+              <h2 id="loyalty-title" class="section-title">Buy 5 coffees, <em>get 1 free.</em></h2>
+              <p>
+                Ask for a stamp card at the counter. Every coffee earns a stamp —
+                fill five and your sixth one is on us.
+              </p>
+            </div>
+            <ol class="stamps" aria-label="Example stamp card: five stamps collected, the sixth coffee is free">
+              <li class="stamp is-filled"><svg aria-hidden="true"><use href="#i-bean" /></svg></li>
+              <li class="stamp is-filled"><svg aria-hidden="true"><use href="#i-bean" /></svg></li>
+              <li class="stamp is-filled"><svg aria-hidden="true"><use href="#i-bean" /></svg></li>
+              <li class="stamp is-filled"><svg aria-hidden="true"><use href="#i-bean" /></svg></li>
+              <li class="stamp is-filled"><svg aria-hidden="true"><use href="#i-bean" /></svg></li>
+              <li class="stamp is-free"><span>Free</span></li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- Reviews -->
+      <section class="section reviews" aria-labelledby="reviews-title">
+        <div class="container">
+          <header class="section-head reveal">
+            <p class="eyebrow">Kind words</p>
+            <h2 id="reviews-title" class="section-title">Loved by our regulars</h2>
+          </header>
+
+          <ul class="review-grid">
+            <li class="review reveal">
+              <div class="rating" role="img" aria-label="Rated 5 out of 5">
+                <svg aria-hidden="true"><use href="#i-star" /></svg><svg aria-hidden="true"><use href="#i-star" /></svg><svg aria-hidden="true"><use href="#i-star" /></svg><svg aria-hidden="true"><use href="#i-star" /></svg><svg aria-hidden="true"><use href="#i-star" /></svg>
+              </div>
+              <blockquote>
+                <p>“The best coffee in town! Their cold brew is absolutely amazing.”</p>
+              </blockquote>
+              <p class="reviewer"><span class="avatar" aria-hidden="true">S</span>Sarah M.</p>
+            </li>
+            <li class="review reveal">
+              <div class="rating" role="img" aria-label="Rated 5 out of 5">
+                <svg aria-hidden="true"><use href="#i-star" /></svg><svg aria-hidden="true"><use href="#i-star" /></svg><svg aria-hidden="true"><use href="#i-star" /></svg><svg aria-hidden="true"><use href="#i-star" /></svg><svg aria-hidden="true"><use href="#i-star" /></svg>
+              </div>
+              <blockquote>
+                <p>“Cozy atmosphere and friendly staff. Their flat white is perfect!”</p>
+              </blockquote>
+              <p class="reviewer"><span class="avatar" aria-hidden="true">J</span>John D.</p>
+            </li>
+            <li class="review reveal">
+              <div class="rating" role="img" aria-label="Rated 4.5 out of 5">
+                <svg aria-hidden="true"><use href="#i-star" /></svg><svg aria-hidden="true"><use href="#i-star" /></svg><svg aria-hidden="true"><use href="#i-star" /></svg><svg aria-hidden="true"><use href="#i-star" /></svg><svg class="is-half" aria-hidden="true"><use href="#i-star" /></svg>
+              </div>
+              <blockquote>
+                <p>“Great place to work and enjoy quality coffee. The Wi-Fi is fast too!”</p>
+              </blockquote>
+              <p class="reviewer"><span class="avatar" aria-hidden="true">E</span>Emma R.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Visit -->
+      <section id="visit" class="section visit" aria-labelledby="visit-title">
+        <div class="container visit-grid">
+          <div class="visit-info reveal">
+            <p class="eyebrow">Visit us</p>
+            <h2 id="visit-title" class="section-title">Come say hello</h2>
+            <p class="status-chip" data-open-status>Checking opening hours…</p>
+
+            <table class="hours">
+              <caption class="visually-hidden">Opening hours</caption>
+              <tbody>
+                <tr data-day="1"><th scope="row">Monday</th><td>7:00 am – 8:00 pm</td></tr>
+                <tr data-day="2"><th scope="row">Tuesday</th><td>7:00 am – 8:00 pm</td></tr>
+                <tr data-day="3"><th scope="row">Wednesday</th><td>7:00 am – 8:00 pm</td></tr>
+                <tr data-day="4"><th scope="row">Thursday</th><td>7:00 am – 8:00 pm</td></tr>
+                <tr data-day="5"><th scope="row">Friday</th><td>7:00 am – 8:00 pm</td></tr>
+                <tr data-day="6"><th scope="row">Saturday</th><td>8:00 am – 6:00 pm</td></tr>
+                <tr data-day="0"><th scope="row">Sunday</th><td>8:00 am – 6:00 pm</td></tr>
+              </tbody>
+            </table>
+
+            <address class="address">
+              <svg class="icon" aria-hidden="true"><use href="#i-pin" /></svg>
+              <span>3430 East Ontario Ranch Rd #5<br />Ontario, CA 91761</span>
+            </address>
+            <a
+              href="https://www.google.com/maps/dir/?api=1&destination=3430+East+Ontario+Ranch+Rd+%235,+Ontario,+CA+91761"
+              class="btn btn-primary"
+              target="_blank"
+              rel="noopener"
+            >
+              Get directions
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg>
+            </a>
+          </div>
+
+          <div class="map reveal">
+            <iframe
+              src="https://www.google.com/maps?q=3430+East+Ontario+Ranch+Rd+%235,+Ontario,+CA+91761&output=embed"
+              title="Map showing Brew Haven at 3430 East Ontario Ranch Rd, Ontario, CA"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="section contact" aria-labelledby="contact-title">
+        <div class="container contact-grid">
+          <div class="contact-intro reveal">
+            <p class="eyebrow">Contact</p>
+            <h2 id="contact-title" class="section-title">Questions, events or wholesale?</h2>
+            <p>Drop us a line and we’ll get back to you soon. Or reach us directly:</p>
+            <ul class="contact-links">
+              <li>
+                <a href="tel:+38733123456">
+                  <span class="contact-icon"><svg class="icon" aria-hidden="true"><use href="#i-phone" /></svg></span>
+                  +387 33 123 456
+                </a>
+              </li>
+              <li>
+                <a href="mailto:hello@brewhaven.com">
+                  <span class="contact-icon"><svg class="icon" aria-hidden="true"><use href="#i-mail" /></svg></span>
+                  hello@brewhaven.com
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="form-card reveal">
+            <form class="contact-form" id="contactForm" novalidate>
+              <div class="field">
+                <label for="name">Your name</label>
+                <input id="name" name="name" type="text" autocomplete="name" required aria-errormessage="name-error" />
+                <p class="field-error" id="name-error">Please tell us your name.</p>
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" required aria-errormessage="email-error" />
+                <p class="field-error" id="email-error">Please enter a valid email, like you@example.com.</p>
+              </div>
+              <div class="field">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required aria-errormessage="message-error"></textarea>
+                <p class="field-error" id="message-error">Please write a short message.</p>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Send message</button>
+            </form>
+            <div class="form-success" id="contactSuccess" tabindex="-1" hidden>
+              <span class="success-icon"><svg class="icon" aria-hidden="true"><use href="#i-check" /></svg></span>
+              <h3>Message sent</h3>
+              <p data-success-text>Thanks for reaching out — we’ll be in touch soon.</p>
+              <button type="button" class="btn btn-ghost" id="contactAgain">Send another</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
 
     <!-- Footer -->
-    <footer>
-      <div class="footer-content">
-        <div class="social-links">
-          <a
-            href="https://www.facebook.com/p/Brew-Haven/"
-            title="Visit our Facebook page"
-            ><i class="fab fa-facebook"></i
-          ></a>
-          <a
-            href="https://www.instagram.com/drinkbrewhaven/"
-            title="Visit our Instagram page"
-            ><i class="fab fa-instagram"></i
-          ></a>
-          <a href="https://x.com/BrewHaven/" title="Visit our Twitter page"
-            ><i class="fab fa-twitter"></i
-          ></a>
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <a href="#home" class="brand">
+            <svg class="brand-mark" aria-hidden="true"><use href="#i-bean" /></svg>
+            <span>Brew Haven</span>
+          </a>
+          <p>Your neighbourhood coffee shop in Ontario, CA. Every cup tells a story.</p>
+          <ul class="socials">
+            <li>
+              <a href="https://www.instagram.com/drinkbrewhaven/" target="_blank" rel="noopener">
+                <svg class="icon" aria-hidden="true"><use href="#i-instagram" /></svg>
+                <span class="visually-hidden">Instagram</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.facebook.com/p/Brew-Haven/" target="_blank" rel="noopener">
+                <svg class="icon" aria-hidden="true"><use href="#i-facebook" /></svg>
+                <span class="visually-hidden">Facebook</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://x.com/BrewHaven/" target="_blank" rel="noopener">
+                <svg class="icon" aria-hidden="true"><use href="#i-x" /></svg>
+                <span class="visually-hidden">X (Twitter)</span>
+              </a>
+            </li>
+          </ul>
         </div>
-        <p>&copy; 2024 Brew Haven. All rights reserved.</p>
+
+        <nav class="footer-col" aria-label="Footer">
+          <h2>Explore</h2>
+          <ul>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#story">Our Coffee</a></li>
+            <li><a href="#visit">Visit</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer-col">
+          <h2>Hours</h2>
+          <ul>
+            <li>Mon – Fri · 7am – 8pm</li>
+            <li>Sat – Sun · 8am – 6pm</li>
+          </ul>
+        </div>
+
+        <div class="footer-col footer-news">
+          <h2>Stay in the loop</h2>
+          <p>Seasonal drinks and coffee tips, about once a month.</p>
+          <form class="news-form" id="newsletterForm" novalidate>
+            <label for="newsEmail" class="visually-hidden">Email address</label>
+            <input id="newsEmail" name="email" type="email" placeholder="you@example.com" autocomplete="email" required />
+            <button type="submit" class="btn btn-caramel">Subscribe</button>
+          </form>
+          <p class="news-msg" id="newsletterMsg" role="status"></p>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <p>&copy; <span id="year">2024</span> Brew Haven. All rights reserved.</p>
+        <p>Made with care &amp; caffeine.</p>
       </div>
     </footer>
-
-    <!-- Notification -->
-    <div class="notification" id="notification">
-      Your message has been sent!
-    </div>
-
-    <!-- Newsletter Popup -->
-    <div class="newsletter-popup" id="newsletterPopup">
-      <div class="popup-content">
-        <button
-          class="close-popup"
-          id="closePopup"
-          title="Close newsletter popup"
-        >
-          <i class="fas fa-times"></i>
-        </button>
-        <h3>Stay Updated!</h3>
-        <p>Subscribe to our newsletter for exclusive offers and coffee tips</p>
-        <form class="newsletter-form" id="newsletterForm">
-          <input type="email" placeholder="Enter your email" required />
-          <button type="submit">Subscribe</button>
-        </form>
-      </div>
-    </div>
-
-    <!-- Balloons Container -->
-    <div class="balloons-container" id="balloonsContainer"></div>
-
-    <script src="index.js"></script>
   </body>
 </html>
